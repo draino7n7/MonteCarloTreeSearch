@@ -1,54 +1,53 @@
 ﻿using System;
 using System.Data.Common;
 
-namespace Connect4
+internal class Program
 {
-    class Program
+    private static void Main(string[] args)
     {
-        static char[,] board = new char[6, 7];
-        static char currentPlayer = 'X';
+        char[,] board = new char[6, 7];
+        char currentPlayer = 'X';
 
-        static void Main(string[] args)
+        bool keepPlaying = true;
+
+        while (keepPlaying)
         {
-            bool keepPlaying = true;
 
-            while (keepPlaying)
+            InitializeBoard();
+            bool gameOver = false;
+
+            PrintBoard();
+
+            while (!gameOver)
             {
-
-                InitializeBoard();
-                bool gameOver = false;
-
-                PrintBoard();
-
-                while (!gameOver)
+                int column = GetColumn();
+                PlaceToken(column);
+                if (CheckWin())
                 {
-                    int column = GetColumn();
-                    PlaceToken(column);
-                    if (CheckWin())
-                    {
-                        PrintBoard();
-                        Console.WriteLine($"Player {currentPlayer} wins!");
-                        gameOver = true;
-                    }
-                    else if (IsBoardFull())
-                    {
-                        PrintBoard();
-                        Console.WriteLine("It's a draw!");
-                        gameOver = true;
-                    }
-                    else
-                    {
-                        PrintBoard();
-                        SwitchPlayer();
-                    }
-
+                    PrintBoard();
+                    Console.WriteLine($"Player {currentPlayer} wins!");
+                    gameOver = true;
+                }
+                else if (IsBoardFull())
+                {
+                    PrintBoard();
+                    Console.WriteLine("It's a draw!");
+                    gameOver = true;
+                }
+                else
+                {
+                    PrintBoard();
+                    SwitchPlayer();
                 }
 
-                while (true)
+            }
+
+            while (true)
+            {
+                Console.WriteLine("\n\nPlay Again?\nY or N\n");
+                var answer = Console.ReadLine();
+                if (answer != null)
                 {
-                    string answer;
-                    Console.WriteLine("\n\nPlay Again?\nY or N\n");
-                    answer = Console.ReadLine();
                     if (answer.ToUpper() == "Y")
                     {
                         keepPlaying = true;
@@ -59,13 +58,13 @@ namespace Connect4
                         keepPlaying = false;
                         break;
                     }
-                    Console.WriteLine("Invalid input, try again.");
                 }
-                
+                Console.WriteLine("Invalid input, try again.");
             }
+
         }
 
-        static void InitializeBoard()
+        void InitializeBoard()
         {
             for (int row = 0; row < 6; row++)
             {
@@ -76,7 +75,7 @@ namespace Connect4
             }
         }
 
-        static void PrintBoard()
+        void PrintBoard()
         {
             Console.Clear();
             for (int row = 0; row < 6; row++)
@@ -91,7 +90,7 @@ namespace Connect4
             Console.WriteLine("0 1 2 3 4 5 6");
         }
 
-        static int GetColumn()
+        int GetColumn()
         {
             int column;
             while (true)
@@ -104,7 +103,7 @@ namespace Connect4
             return column;
         }
 
-        static void PlaceToken(int column)
+        void PlaceToken(int column)
         {
             for (int row = 5; row >= 0; row--)
             {
@@ -116,7 +115,7 @@ namespace Connect4
             }
         }
 
-        static bool CheckWin()
+        bool CheckWin()
         {
             // Check horizontal
             for (int row = 0; row < 6; row++)
@@ -165,7 +164,7 @@ namespace Connect4
             return false;
         }
 
-        static bool IsBoardFull()
+        bool IsBoardFull()
         {
             for (int col = 0; col < 7; col++)
             {
@@ -175,10 +174,9 @@ namespace Connect4
             return true;
         }
 
-        static void SwitchPlayer()
+        void SwitchPlayer()
         {
-            currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+            currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
         }
     }
 }
-
