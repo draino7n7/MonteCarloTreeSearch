@@ -82,12 +82,12 @@ internal class Program
             {
                 for (int col = 0; col < 7; col++)
                 {
-                    Console.Write(board[row, col] + "|");
+                    Console.Write("|" + board[row, col]);
                 }
-                Console.WriteLine();
+                Console.WriteLine("|");
             }
-            Console.WriteLine("---------------");
-            Console.WriteLine("0 1 2 3 4 5 6");
+            Console.WriteLine("===============");
+            Console.WriteLine("|0|1|2|3|4|5|6|");
         }
 
         int GetColumn()
