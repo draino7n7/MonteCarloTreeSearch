@@ -28,7 +28,7 @@ namespace ConnectFour
                         Console.WriteLine($"Player {gameState.CurrentPlayer} wins!");
                         gameOver = true;
                     }
-                    else if (gameState.IsBoardFull())
+                    else if (gameState.CheckDraw())
                     {
                         gameState.PrintBoard();
                         Console.WriteLine("It's a draw!");

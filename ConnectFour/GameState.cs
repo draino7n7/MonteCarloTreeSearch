@@ -13,7 +13,22 @@ namespace Connect4
             CurrentPlayer = currentPlayer;
         }
 
-        public bool IsBoardFull()
+        public List<GameState> GetMoveList()
+        {
+            List<GameState> moveList = new List<GameState>();
+
+            foreach (int col in GetPossibleMoves())
+            {
+                char[,] newBoard = (char[,])Board.Clone();
+                PlaceToken(newBoard, col);
+                char nextPlayer = (CurrentPlayer == 'X') ? 'O' : 'X';
+                moveList.Add(new GameState(newBoard, nextPlayer));
+            }
+
+            return moveList;
+        }
+
+        public bool CheckDraw()
         {
             for (int col = 0; col < 7; col++)
             {
@@ -87,6 +102,33 @@ namespace Connect4
                 Console.WriteLine("|");
             }
             Console.WriteLine("===============");
+        }
+
+        private void PlaceToken(char[,] board, int column)
+        {
+            for (int row = 5; row >= 0; row--)
+            {
+                if (board[row, column] == ' ')
+                {
+                    board[row, column] = CurrentPlayer;
+                    break;
+                }
+            }
+        }
+
+        private List<int> GetPossibleMoves()
+        {
+            List<int> possibleMoves = new List<int>();
+
+            for (int col = 0; col < 7; col++)
+            {
+                if (Board[0, col] == ' ') // Check if column is not full
+                {
+                    possibleMoves.Add(col);
+                }
+            }
+
+            return possibleMoves;
         }
     }
 }
