@@ -1,8 +1,9 @@
 ﻿using System;
+using MonteCarloTreeSearch;
 
 namespace Connect4
 {
-    public class GameState
+    public class GameState : IGameState
     {
         public char[,] Board { get; set; }
         public char CurrentPlayer { get; set; }
@@ -13,9 +14,9 @@ namespace Connect4
             CurrentPlayer = currentPlayer;
         }
 
-        public List<GameState> GetMoveList()
+        public List<IGameState> GetMoveList()
         {
-            List<GameState> moveList = new List<GameState>();
+            List<IGameState> moveList = new List<IGameState>();
 
             foreach (int col in GetPossibleMoves())
             {
@@ -85,6 +86,20 @@ namespace Connect4
             }
 
             return false;
+        }
+
+        public double GetResult()
+        {
+            if (CheckWin() && CurrentPlayer == 'X')
+            {
+                return 1;
+            }
+            else if (CheckWin() && CurrentPlayer == 'O')
+            {
+                return -1;
+            }
+
+            return 0;
         }
 
         public void PrintBoard()

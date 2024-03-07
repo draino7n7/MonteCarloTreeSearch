@@ -3,11 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonteCarloTreeSearch", "MonteCarloTreeSearch\MonteCarloTreeSearch.csproj", "{684AA40F-5315-4554-A4D6-EE109953E58C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonteCarloTreeSearch", "MonteCarloTreeSearch\MonteCarloTreeSearch.csproj", "{684AA40F-5315-4554-A4D6-EE109953E58C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectFour", "ConnectFour\ConnectFour.csproj", "{64419542-83A0-46BA-BB34-2E0383296C03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectFour", "ConnectFour\ConnectFour.csproj", "{64419542-83A0-46BA-BB34-2E0383296C03}"
+	ProjectSection(ProjectDependencies) = postProject
+		{684AA40F-5315-4554-A4D6-EE109953E58C} = {684AA40F-5315-4554-A4D6-EE109953E58C}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonteCarloTreeSearchTests", "MonteCarloTreeSearchTests\MonteCarloTreeSearchTests.csproj", "{CCDA6A2B-102D-4F0D-87FD-13D4D2C89001}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonteCarloTreeSearchTests", "MonteCarloTreeSearchTests\MonteCarloTreeSearchTests.csproj", "{CCDA6A2B-102D-4F0D-87FD-13D4D2C89001}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
